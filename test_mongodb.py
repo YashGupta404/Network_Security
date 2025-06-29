@@ -1,14 +1,13 @@
-
 from pymongo.mongo_client import MongoClient
+import certifi
 
-uri = "mongodb+srv://<username>:<password>@cluster0.mongodb.net/test?retryWrites=true&w=majority"
+uri = "mongodb+srv://yashguptawork2005:6fO8lQBuYLQs0lXB@ac-1qzyqeu-shard-00-00.tv4zylh.mongodb.net/?retryWrites=true&w=majority"
 
-# Create a new client and connect to the server
-client = MongoClient(uri)
+# Replace <username> and <password> with your real MongoDB Atlas credentials
+client = MongoClient(uri, tls=True, tlsCAFile=certifi.where())
 
-# Send a ping to confirm a successful connection
 try:
     client.admin.command('ping')
-    print("Pinged your deployment. You successfully connected to MongoDB!")
+    print("✅ Successfully connected to MongoDB Atlas!")
 except Exception as e:
-    print(e)
+    print("❌ Connection failed:", e)
